@@ -26,4 +26,5 @@ public class CardTest {
     public void aceHasValue1() {
         assertEquals(1, card.getValueFromEnum());
     }
+
 }

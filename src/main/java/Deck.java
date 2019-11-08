@@ -10,7 +10,7 @@ public class Deck {
         this.card = card;
     }
 
-    public int getCards(){
+    public int getCardsLength(){
         return this.cards.size();
     }
 
@@ -25,6 +25,10 @@ public class Deck {
                 addCard(suit, rank);
             }
         }
+    }
+
+    public Card removeCard(){
+        return this.cards.remove(0);
     }
 
 }

@@ -1,7 +1,7 @@
 public class Player {
 
     public String name;
-    private Card card;
+    public Card card;
 
     public Player(String name){
         this.name = name;

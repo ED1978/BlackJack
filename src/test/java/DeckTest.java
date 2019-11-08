@@ -49,4 +49,10 @@ public class DeckTest {
         deck.removeCard();
         assertEquals(51, deck.getCardsLength());
     }
+
+    @Test
+    public void canShuffle() {
+        deck.populateDeck();
+        deck.shuffleDeck();
+    }
 }

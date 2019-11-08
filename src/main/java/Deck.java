@@ -5,8 +5,8 @@ public class Deck {
     private ArrayList<Card> cards;
     private Card card;
 
-    public Deck(ArrayList<Card> cards){
-        this.cards = cards;
+    public Deck(){
+        this.cards = new ArrayList<Card>();
         this.card = card;
     }
 

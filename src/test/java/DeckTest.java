@@ -14,22 +14,18 @@ public class DeckTest {
 
     @Before
     public void before(){
-        card1 = new Card(SuitType.DIAMONDS, RankType.FIVE);
-        card2 = new Card(SuitType.HEARTS, RankType.KING);
-        cards = new ArrayList<Card>();
-        cards.add(card1);
-        deck = new Deck(cards);
+        deck = new Deck();
     }
 
     @Test
     public void canAddCard() {
         deck.addCard(SuitType.DIAMONDS, RankType.ACE);
-        assertEquals(2, deck.getCards());
+        assertEquals(1, deck.getCards());
     }
 
     @Test
     public void canPopulateDeck() {
         deck.populateDeck();
-        assertEquals(53, deck.getCards());
+        assertEquals(52, deck.getCards());
     }
 }

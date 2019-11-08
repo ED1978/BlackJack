@@ -12,8 +12,7 @@ public class Player {
         return this.card;
     }
 
-    public void takeCardFromDeck(Deck deck){
-        Card card = deck.removeCard();
+    public void takeCardFromDeck(Card card){
         this.card = card;
     }
 

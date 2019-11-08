@@ -8,10 +8,12 @@ import static org.junit.Assert.assertEquals;
 public class DeckTest {
 
     Deck deck;
+    Player player1;
 
     @Before
     public void before(){
         deck = new Deck();
+        player1 = new Player("Player 1");
     }
 
     @Test
@@ -29,7 +31,7 @@ public class DeckTest {
     @Test
     public void canRemoveCard() {
         deck.populateDeck();
-        deck.removeCard();
+        deck.dealCard(player1);
         assertEquals(51, deck.getCardsLength());
     }
 

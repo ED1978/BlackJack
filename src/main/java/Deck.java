@@ -26,8 +26,9 @@ public class Deck {
         }
     }
 
-    public Card removeCard(){
-        return this.deck.remove(0);
+    public void dealCard(Player player){
+        Card card =  this.deck.remove(0);
+        player.takeCardFromDeck(card);
     }
 
     public void shuffleDeck(){

@@ -16,8 +16,8 @@ public class Game {
     public void dealCards(Deck deck){
         deck.populateDeck();
         deck.shuffleDeck();
-        this.player1.takeCardFromDeck(deck);
-        this.player2.takeCardFromDeck(deck);
+        deck.dealCard(player1);
+        deck.dealCard(player2);
     }
 
     public String getResult(){
@@ -36,6 +36,8 @@ public class Game {
         dealCards(deck);
         return getResult();
     }
+
+
 
 
 

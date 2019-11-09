@@ -9,11 +9,13 @@ public class DeckTest {
 
     Deck deck;
     Player player1;
+    Dealer dealer;
 
     @Before
     public void before(){
         deck = new Deck();
         player1 = new Player("Player 1");
+        dealer = new Dealer();
     }
 
     @Test
@@ -29,10 +31,16 @@ public class DeckTest {
     }
 
     @Test
-    public void canRemoveCard() {
+    public void canDealCardToPlayer() {
         deck.populateDeck();
-        deck.dealCard(player1);
+        deck.dealCardToPlayer(player1);
         assertEquals(51, deck.getCardsLength());
     }
 
+    @Test
+    public void canDealCardToDealer() {
+        deck.populateDeck();
+        deck.dealCardToDealer(dealer);
+        assertEquals(1, dealer.getHandSize());
+    }
 }

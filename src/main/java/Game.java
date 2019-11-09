@@ -16,15 +16,15 @@ public class Game {
     public void dealCards(Deck deck){
         deck.populateDeck();
         deck.shuffleDeck();
-        deck.dealCard(player1);
-        deck.dealCard(player2);
+        deck.dealCardToPlayer(player1);
+        deck.dealCardToPlayer(player2);
     }
 
     public String getResult(){
         String result = "";
-        if(this.player1.card.getValueFromEnum() == this.player2.card.getValueFromEnum()){
+        if (this.player1.card.getValueFromEnum() == this.player2.card.getValueFromEnum()){
             result = "Draw";
-        } else if(this.player2.card.getValueFromEnum() < this.player1.card.getValueFromEnum()){
+        } else if (this.player2.card.getValueFromEnum() < this.player1.card.getValueFromEnum()){
             result = "Player 1";
         } else {
             result = "Player 2";

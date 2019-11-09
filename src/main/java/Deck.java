@@ -26,9 +26,14 @@ public class Deck {
         }
     }
 
-    public void dealCard(Player player){
+    public void dealCardToPlayer(Player player){
         Card card =  this.deck.remove(0);
         player.takeCardFromDeck(card);
+    }
+
+    public void dealCardToDealer(Dealer dealer){
+        Card card = this.deck.remove(0);
+        dealer.takeCardFromDeck(card);
     }
 
     public void shuffleDeck(){

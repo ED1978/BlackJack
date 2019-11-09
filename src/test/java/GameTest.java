@@ -34,8 +34,8 @@ public class GameTest {
         assertEquals(50, deck.getCardsLength());
     }
 
-    @Test
-    public void canPlayGame() {
-        assertEquals("Draw", game.playGame(deck));
-    }
+//    @Test
+//    public void canPlayGame() {
+//        assertEquals("Draw", game.playGame(deck));
+//    }
 }

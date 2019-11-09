@@ -4,12 +4,12 @@ import java.util.Collections;
 public class Game {
 
     public Player player1;
-    public Player player2;
+    public Dealer dealer;
     private ArrayList<Card> deck;
 
     public Game(){
         this.player1 = new Player("Player 1");
-        this.player2 = new Player("Player 2");
+        this.dealer = new Dealer();
         this.deck = new ArrayList<Card>();
     }
 
@@ -17,7 +17,9 @@ public class Game {
         deck.populateDeck();
         deck.shuffleDeck();
         deck.dealCardToPlayer(player1);
-        deck.dealCardToPlayer(player2);
+        deck.dealCardToDealer(dealer);
+        deck.dealCardToPlayer(player1);
+        deck.dealCardToDealer(dealer);
     }
 
 //    public String getResult(){

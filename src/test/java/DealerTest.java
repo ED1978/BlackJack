@@ -8,13 +8,15 @@ import static org.junit.Assert.assertEquals;
 public class DealerTest {
 
     private Dealer dealer;
-    private Card card;
+    private Card card1;
+    private Card card2;
     private ArrayList<Card> hand;
 
     @Before
     public void before(){
         dealer = new Dealer();
-        card = new Card(SuitType.DIAMONDS, RankType.QUEEN);
+        card1 = new Card(SuitType.DIAMONDS, RankType.QUEEN);
+        card2 = new Card(SuitType.DIAMONDS,RankType.TWO);
         hand = new ArrayList<Card>();
     }
 
@@ -25,7 +27,14 @@ public class DealerTest {
 
     @Test
     public void canTakeCardFromDeck() {
-        dealer.takeCardFromDeck(card);
+        dealer.takeCardFromDeck(card1);
         assertEquals(1, dealer.getHandSize());
+    }
+
+    @Test
+    public void canAddUpHand() {
+        dealer.takeCardFromDeck(card1);
+        dealer.takeCardFromDeck(card2);
+        assertEquals(12, dealer.addUpHand());
     }
 }

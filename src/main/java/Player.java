@@ -1,19 +1,21 @@
+import java.util.ArrayList;
+
 public class Player {
 
     public String name;
-    public Card card;
+    public ArrayList<Card> hand;
 
     public Player(String name){
         this.name = name;
-        this.card = card;
+        this.hand = new ArrayList<Card>();
     }
 
-    public Card getCard(){
-        return this.card;
+    public int getHandLength(){
+        return this.hand.size();
     }
 
     public void takeCardFromDeck(Card card){
-        this.card = card;
+        this.hand.add(card);
     }
 
 

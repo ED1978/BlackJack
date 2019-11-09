@@ -8,24 +8,20 @@ import static org.junit.Assert.assertEquals;
 public class PlayerTest {
 
     private Player player;
-    private Deck deck;
     private Card card;
+    private ArrayList<Card> hand;
 
     @Before
     public void before(){
         player = new Player("Eric");
-        deck = new Deck();
+        card = new Card(SuitType.DIAMONDS, RankType.QUEEN);
+        hand = new ArrayList<Card>();
     }
 
     @Test
-    public void canGetCard() {
-        assertEquals(null, player.getCard());
+    public void canTakeCardFromDeck() {
+        player.takeCardFromDeck(card);
+        assertEquals(null, player.getHandLength());
     }
 
-//    @Test
-//    public void canTakeCardFromDeck() {
-//        deck.populateDeck();
-//        player.takeCardFromDeck(deck);
-//        assertEquals(null, player.getCard());
-//    }
 }

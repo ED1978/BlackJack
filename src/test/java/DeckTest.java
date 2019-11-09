@@ -34,7 +34,7 @@ public class DeckTest {
     public void canDealCardToPlayer() {
         deck.populateDeck();
         deck.dealCardToPlayer(player1);
-        assertEquals(51, deck.getCardsLength());
+        assertEquals(1, player1.getHandLength());
     }
 
     @Test

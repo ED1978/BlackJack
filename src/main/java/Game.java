@@ -20,22 +20,22 @@ public class Game {
         deck.dealCardToPlayer(player2);
     }
 
-    public String getResult(){
-        String result = "";
-        if (this.player1.card.getValueFromEnum() == this.player2.card.getValueFromEnum()){
-            result = "Draw";
-        } else if (this.player2.card.getValueFromEnum() < this.player1.card.getValueFromEnum()){
-            result = "Player 1";
-        } else {
-            result = "Player 2";
-        }
-        return result;
-    }
+//    public String getResult(){
+//        String result = "";
+//        if (this.player1.card.getValueFromEnum() == this.player2.card.getValueFromEnum()){
+//            result = "Draw";
+//        } else if (this.player2.card.getValueFromEnum() < this.player1.card.getValueFromEnum()){
+//            result = "Player 1";
+//        } else {
+//            result = "Player 2";
+//        }
+//        return result;
+//    }
 
-    public String playGame(Deck deck){
-        dealCards(deck);
-        return getResult();
-    }
+//    public String playGame(Deck deck){
+//        dealCards(deck);
+//        return getResult();
+//    }
 
 
 

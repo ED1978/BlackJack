@@ -26,6 +26,22 @@ public class Player {
         return total;
     }
 
+    public Boolean isBust(){
+        if (addUpHand() <= 21){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public Boolean hasBlackJack(){
+        Boolean result = false;
+        if (getHandLength() == 2 && addUpHand() == 11){
+            result = true;
+        }
+        return result;
+    }
+
 
 
 }

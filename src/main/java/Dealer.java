@@ -30,4 +30,20 @@ public class Dealer {
         return total;
     }
 
+    public Boolean isBust(){
+        if (addUpHand() <= 21){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public Boolean hasBlackJack(){
+        Boolean result = false;
+        if(addUpHand() == 11 && getHandSize() == 2){
+            result = true;
+        }
+        return result;
+    }
+
 }

@@ -16,7 +16,7 @@ public class PlayerTest {
     public void before(){
         player = new Player("Eric");
         card1 = new Card(SuitType.DIAMONDS, RankType.QUEEN);
-        card2 = new Card(SuitType.HEARTS, RankType.TWO);
+        card2 = new Card(SuitType.HEARTS, RankType.ACE);
         hand = new ArrayList<Card>();
     }
 
@@ -30,6 +30,20 @@ public class PlayerTest {
     public void canAddUpHand() {
         player.takeCardFromDeck(card1);
         player.takeCardFromDeck(card2);
-        assertEquals(12, player.addUpHand());
+        assertEquals(11, player.addUpHand());
+    }
+
+    @Test
+    public void hasBlackJackTrue() {
+        player.takeCardFromDeck(card1);
+        player.takeCardFromDeck(card2);
+        assertEquals(true, player.hasBlackJack());
+    }
+
+    @Test
+    public void hasBlackJackFalse() {
+        player.takeCardFromDeck(card1);
+        player.takeCardFromDeck(card1);
+        assertEquals(false, player.hasBlackJack());
     }
 }

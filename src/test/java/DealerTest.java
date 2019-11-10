@@ -76,4 +76,12 @@ public class DealerTest {
         dealer.takeCardFromDeck(card1);
         assertEquals(false, dealer.hasBlackJack());
     }
+
+    @Test
+    public void canShowFirstCardValue() {
+        dealer.takeCardFromDeck(card2);
+        dealer.takeCardFromDeck(card3);
+        assertEquals(2, dealer.showFirstCardValue());
+
+    }
 }

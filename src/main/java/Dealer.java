@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Dealer {
 
     private String name;
-    private ArrayList<Card> hand;
+    public ArrayList<Card> hand;
 
     public Dealer(){
         this.name = "Dealer";
@@ -44,6 +44,11 @@ public class Dealer {
             result = true;
         }
         return result;
+    }
+
+    public int showFirstCardValue(){
+        Card card = hand.get(0);
+        return card.getValueFromEnum();
     }
 
 }

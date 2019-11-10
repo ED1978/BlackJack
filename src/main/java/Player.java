@@ -14,7 +14,8 @@ public class Player {
         return this.hand.size();
     }
 
-    public void takeCardFromDeck(Card card){
+    public void takeCardFromDeck(Deck deck){
+        Card card = deck.dealCardToPlayer();
         this.hand.add(card);
     }
 
@@ -42,6 +43,21 @@ public class Player {
         return result;
     }
 
+    public Boolean handValueUnder16(){
+        if (addUpHand() < 16){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-
+    public void takeTurn(Deck deck){
+            if(handValueUnder16()){
+                while (addUpHand() < 16){
+                    System.out.println("Player Twists");
+                    takeCardFromDeck(deck);
+                    System.out.println("Player's hand total = " + addUpHand());
+                }
+            }
+    }
 }

@@ -33,7 +33,7 @@ public class DeckTest {
     @Test
     public void canDealCardToPlayer() {
         deck.populateDeck();
-        deck.dealCardToPlayer(player1);
+        player1.takeCardFromDeck(deck);
         assertEquals(1, player1.getHandLength());
     }
 
@@ -41,6 +41,20 @@ public class DeckTest {
     public void canDealCardToDealer() {
         deck.populateDeck();
         deck.dealCardToDealer(dealer);
+        assertEquals(1, dealer.getHandSize());
+    }
+
+//    @Test
+//    public void canTwistPlayer() {
+//        deck.populateDeck();
+//        deck.twistPlayer(player1);
+//        assertEquals(1, player1.getHandLength());
+//    }
+
+    @Test
+    public void canTwistDealer() {
+        deck.populateDeck();
+        deck.twistDealer(dealer);
         assertEquals(1, dealer.getHandSize());
     }
 }

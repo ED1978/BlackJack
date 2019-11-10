@@ -1,12 +1,15 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Game {
 
     public Player player1;
     public Dealer dealer;
     private ArrayList<Card> deck;
-
     public Game(){
         this.player1 = new Player("Player 1");
         this.dealer = new Dealer();
@@ -16,9 +19,9 @@ public class Game {
     public void dealCards(Deck deck){
         deck.populateDeck();
         deck.shuffleDeck();
-        deck.dealCardToPlayer(player1);
+        player1.takeCardFromDeck(deck);
         deck.dealCardToDealer(dealer);
-        deck.dealCardToPlayer(player1);
+        player1.takeCardFromDeck(deck);
         deck.dealCardToDealer(dealer);
     }
 
@@ -50,7 +53,7 @@ public class Game {
     public String declareWinner(){
         String winner = null;
         if (this.player1.addUpHand() > this.dealer.addUpHand()){
-           winner = "Player 1 wins";
+           winner = "Player wins";
         } else if (this.player1.addUpHand() < this.dealer.addUpHand()) {
             winner = "Dealer wins";
         } else {
@@ -71,14 +74,36 @@ public class Game {
         return result;
     }
 
-    public String playGame(Deck deck){
+    public String playGame(Deck deck) throws IOException {
         dealCards(deck);
-        System.out.println("Player's hand " + player1.addUpHand());
-        System.out.println("Dealer's hand " + dealer.addUpHand());
+        System.out.println("Player's hand total = " + player1.addUpHand());
+        System.out.println("Dealer's hand total = " + dealer.addUpHand());
+        playerTurn(deck);
+//        System.out.println("Player's hand total = " + player1.addUpHand());
         String result = getResult();
         System.out.println(result);
         return result;
     }
+
+    public void playerTurn(Deck deck){
+        player1.takeTurn(deck);
+        if(player1.isBust() == true){
+            getResult();
+        } else {
+            System.out.println("Player Sticks");
+        }
+    }
+
+
+
+//    public String getUserInput(){
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Player: press T to TWIST or S to STICK");
+//        String twistOrStick = scanner.nextLine();
+//        return twistOrStick;
+//    }
+
+
 
 
 

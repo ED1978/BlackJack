@@ -15,7 +15,7 @@ public class Player {
     }
 
     public void takeCardFromDeck(Deck deck){
-        Card card = deck.dealCardToPlayer();
+        Card card = deck.dealCard();
         this.hand.add(card);
     }
 

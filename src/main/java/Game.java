@@ -20,9 +20,9 @@ public class Game {
         deck.populateDeck();
         deck.shuffleDeck();
         player1.takeCardFromDeck(deck);
-        deck.dealCardToDealer(dealer);
+        dealer.takeCardFromDeck(deck);
         player1.takeCardFromDeck(deck);
-        deck.dealCardToDealer(dealer);
+        dealer.takeCardFromDeck(deck);
     }
 
 

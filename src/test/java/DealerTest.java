@@ -12,6 +12,7 @@ public class DealerTest {
     private Card card2;
     private Card card3;
     private ArrayList<Card> hand;
+    private Deck deck;
 
     @Before
     public void before(){
@@ -20,6 +21,7 @@ public class DealerTest {
         card2 = new Card(SuitType.DIAMONDS,RankType.TWO);
         card3 = new Card(SuitType.DIAMONDS,RankType.ACE);
         hand = new ArrayList<Card>();
+        deck = new Deck();
     }
 
     @Test
@@ -29,59 +31,84 @@ public class DealerTest {
 
     @Test
     public void canTakeCardFromDeck() {
-        dealer.takeCardFromDeck(card1);
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
         assertEquals(1, dealer.getHandSize());
     }
 
     @Test
     public void canAddUpHand() {
-        dealer.takeCardFromDeck(card1);
-        dealer.takeCardFromDeck(card2);
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
         assertEquals(12, dealer.addUpHand());
     }
 
     @Test
     public void CheckIsBustTrue() {
-        dealer.takeCardFromDeck(card1);
-        dealer.takeCardFromDeck(card1);
-        dealer.takeCardFromDeck(card2);
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
         assertEquals(true, dealer.isBust());
     }
 
     @Test
     public void checkIsBustFalse() {
-        dealer.takeCardFromDeck(card1);
-        dealer.takeCardFromDeck(card2);
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
         assertEquals(false, dealer.isBust());
     }
 
     @Test
     public void checkIsBust21() {
-        dealer.takeCardFromDeck(card1);
-        dealer.takeCardFromDeck(card1);
-        dealer.takeCardFromDeck(card3);
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
         assertEquals(false, dealer.isBust());
     }
 
     @Test
     public void hasBlackJackTrue() {
-        dealer.takeCardFromDeck(card1);
-        dealer.takeCardFromDeck(card3);
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
         assertEquals(true, dealer.hasBlackJack());
     }
 
     @Test
     public void hasBlackJackFalse() {
-        dealer.takeCardFromDeck(card1);
-        dealer.takeCardFromDeck(card1);
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
         assertEquals(false, dealer.hasBlackJack());
     }
 
     @Test
     public void canShowFirstCardValue() {
-        dealer.takeCardFromDeck(card2);
-        dealer.takeCardFromDeck(card3);
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
         assertEquals(2, dealer.showFirstCardValue());
 
+    }
+
+    @Test
+    public void canTakeTurn() {
+        deck.populateDeck();
+        deck.shuffleDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeTurn(deck);
+        assertEquals(3, dealer.getHandSize());
     }
 }

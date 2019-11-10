@@ -18,7 +18,8 @@ public class Dealer {
         return this.hand.size();
     }
 
-    public void takeCardFromDeck(Card card){
+    public void takeCardFromDeck(Deck deck){
+        Card card = deck.dealCard();
         this.hand.add(card);
     }
 
@@ -49,6 +50,24 @@ public class Dealer {
     public int showFirstCardValue(){
         Card card = hand.get(0);
         return card.getValueFromEnum();
+    }
+
+    public Boolean handValueUnder16(){
+        if (addUpHand() < 16){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void takeTurn(Deck deck){
+        if (handValueUnder16()){
+            while (addUpHand() < 16){
+                System.out.println("Dealer Twists");
+                takeCardFromDeck(deck);
+                System.out.println("Dealer's hand total = " + addUpHand());
+            }
+        }
     }
 
 }

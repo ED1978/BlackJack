@@ -1,6 +1,6 @@
 public class Card {
 
-    private SuitType suit;
+    public SuitType suit;
     private RankType rank;
 
     public Card(SuitType suit, RankType rank){

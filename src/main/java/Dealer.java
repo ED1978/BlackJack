@@ -41,7 +41,7 @@ public class Dealer {
 
     public Boolean hasBlackJack(){
         Boolean result = false;
-        if(addUpHand() == 11 && getHandSize() == 2){
+        if(addUpHand() == 11 && getHandSize() == 2 && handHasCardValue10()){
             result = true;
         }
         return result;
@@ -65,9 +65,73 @@ public class Dealer {
             while (addUpHand() < 16){
                 System.out.println("Dealer Twists");
                 takeCardFromDeck(deck);
-                System.out.println("Dealer's hand total = " + addUpHand());
+                sysOutCardString();
+                System.out.println("");
             }
         }
+    }
+
+    public SuitType getCardSuit(Card card){
+        return card.getSuit();
+    }
+
+    public RankType getCardRank(Card card){
+        return card.getRank();
+    }
+
+    public void sysOutCardString(){
+        String cardStringToPrint = buildCardString();
+        System.out.println(cardStringToPrint);
+    }
+
+    public String buildCardString(){
+        String cardString = "Dealer's hand:";
+        for (Card card : hand){
+            cardString += " [" + card.getRank();
+            cardString += " of ";
+            cardString += card.getSuit() + "].";
+        }
+        return cardString;
+    }
+
+    public Card getFirstCardInHand(){
+        Card card = this.hand.get(0);
+        return card;
+    }
+
+    public String buildFirstHandString(){
+        Card card = getFirstCardInHand();
+        String firstHandString = "Dealer's hand:";
+        firstHandString += " [" + card.getRank();
+        firstHandString += " of ";
+        firstHandString += card.getSuit() + "].";
+        firstHandString +=  " [ ? of ? ].";
+        return firstHandString;
+    }
+
+    public void sysOutFirstHandString(){
+        String firstHandToPrint = buildFirstHandString();
+        System.out.println(firstHandToPrint);
+    }
+
+    public Boolean handHasCardValue10(){
+        Boolean value10 = false;
+        for(Card card : hand){
+            if(card.getValueFromEnum() == 10){
+                value10 = true;
+            }
+        }
+        return value10;
+    }
+
+    public int getDealerTotal(){
+        int dealerTotal = 0;
+        if(hasBlackJack()){
+            dealerTotal = 21;
+        } else {
+            dealerTotal = addUpHand();
+        }
+        return dealerTotal;
     }
 
 }

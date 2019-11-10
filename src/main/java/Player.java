@@ -37,7 +37,7 @@ public class Player {
 
     public Boolean hasBlackJack(){
         Boolean result = false;
-        if (getHandLength() == 2 && addUpHand() == 11){
+        if (getHandLength() == 2 && addUpHand() == 11 && handHasCardValue10()){
             result = true;
         }
         return result;
@@ -56,8 +56,52 @@ public class Player {
                 while (addUpHand() < 16){
                     System.out.println("Player Twists");
                     takeCardFromDeck(deck);
-                    System.out.println("Player's hand total = " + addUpHand());
+                    sysOutCardString();
+                    System.out.println("");
                 }
             }
+    }
+
+    public SuitType getCardSuit(Card card){
+        return card.getSuit();
+    }
+
+    public RankType getCardRank(Card card){
+        return card.getRank();
+    }
+
+    public void sysOutCardString(){
+        String cardStringToPrint = buildCardString();
+        System.out.println(cardStringToPrint);
+    }
+
+    public String buildCardString(){
+        String cardString = "Player's hand:";
+        for (Card card : hand){
+            cardString += " [" + card.getRank();
+            cardString += " of ";
+            cardString += card.getSuit() + "].";
+        }
+        return cardString;
+    }
+
+    public Boolean handHasCardValue10(){
+        Boolean value10 = false;
+        for(Card card : hand){
+            if(card.getValueFromEnum() == 10){
+                value10 = true;
+            }
+        }
+        return value10;
+    }
+
+    public int getPlayerTotal(){
+        int playerTotal = 0;
+        if (hasBlackJack()){
+            playerTotal = 21;
+        } else {
+            playerTotal = addUpHand();
+        }
+        return playerTotal;
     }
 }

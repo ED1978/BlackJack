@@ -153,10 +153,11 @@ public class GameTest {
 
     @Test
     public void canPlayGame() throws IOException {
-        assertEquals("Dealer wins", game.playGame(deck));
+        game.playGame(deck);
     }
 
-//    @Test
+
+    //    @Test
 //    public void canGetUserInput() {
 //        assertEquals("t", game.getUserInput());
 //    }

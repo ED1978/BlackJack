@@ -82,4 +82,42 @@ public class PlayerTest {
         player.takeTurn(deck);
         assertEquals(3, player.getHandLength());
     }
+
+    @Test
+    public void canGetCardSuit() {
+        assertEquals(SuitType.DIAMONDS, player.getCardSuit(card1));
+    }
+
+    @Test
+    public void canGetCardRank() {
+        assertEquals(RankType.QUEEN, player.getCardRank(card1));
+    }
+
+    @Test
+    public void canBuildCardString() {
+        deck.populateDeck();
+        player.takeCardFromDeck(deck);
+        player.takeCardFromDeck(deck);
+        player.takeCardFromDeck(deck);
+        assertEquals("Dealer's hand: [ACE of HEARTS]. [TWO of HEARTS]. [THREE of HEARTS].", player.buildCardString());
+    }
+
+    @Test
+    public void canSysOutCardString() {
+        deck.populateDeck();
+        player.takeCardFromDeck(deck);
+        player.takeCardFromDeck(deck);
+        player.takeCardFromDeck(deck);
+        player.sysOutCardString();
+    }
+
+    @Test
+    public void handHasCardValue10() {
+        deck.populateDeck();
+        deck.shuffleDeck();
+        player.takeCardFromDeck(deck);
+        player.takeCardFromDeck(deck);
+        player.takeCardFromDeck(deck);
+        assertEquals(true, player.handHasCardValue10());
+    }
 }

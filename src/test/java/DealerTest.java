@@ -111,4 +111,49 @@ public class DealerTest {
         dealer.takeTurn(deck);
         assertEquals(3, dealer.getHandSize());
     }
+
+    @Test
+    public void canGetCardSuit() {
+        assertEquals(SuitType.DIAMONDS, dealer.getCardSuit(card1));
+    }
+
+    @Test
+    public void canGetCardRank() {
+        assertEquals(RankType.QUEEN, dealer.getCardRank(card1));
+    }
+
+    @Test
+    public void canBuildCardString() {
+        deck.populateDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        assertEquals("Dealer's hand: [ACE of HEARTS]. [TWO of HEARTS]. [THREE of HEARTS].", dealer.buildCardString());
+    }
+
+    @Test
+    public void canSysOutCardString() {
+        deck.populateDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.sysOutCardString();
+    }
+
+    @Test
+    public void canBuildFirstHandString() {
+        deck.populateDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        assertEquals("Dealer's hand: [ACE of HEARTS]. [ ? of ? ].", dealer.buildFirstHandString());
+    }
+
+    @Test
+    public void canSysOutFirstHandString() {
+        deck.populateDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.sysOutFirstHandString();
+    }
 }

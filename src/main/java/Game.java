@@ -36,16 +36,16 @@ public class Game {
         if(result == null){
             result = declareWinner();
         }
-
+        System.out.println(result);
         return result;
     }
 
     public String blackJack(){
         String blackJack = null;
         if(dealer.hasBlackJack() == false && player1.hasBlackJack() == true){
-            blackJack = "BLACKJACK!! Player wins.";
+            blackJack = "Player wins.";
         } else if(dealer.hasBlackJack() == true){
-            blackJack = "BLACKJACK!! Dealer wins.";
+            blackJack = "Dealer wins.";
         }
         return blackJack;
     }
@@ -65,34 +65,90 @@ public class Game {
     public String isBust(){
         String result = null;
         if (player1.isBust() == true && dealer.isBust() == true) {
-            result =  "Both Bust, Dealer Wins!";
+            result =  "Dealer Wins!";
         } else if (player1.isBust() == true && dealer.isBust() == false){
-            result =  "Player Bust, Dealer Wins!";
+            result =  "Dealer Wins!";
         } else if (player1.isBust() == false && dealer.isBust() ==true){
-            result =  "Dealer Bust, Player Wins!";
+            result =  "Player Wins!";
         }
         return result;
     }
 
-    public String playGame(Deck deck) throws IOException {
+    public void playGame(Deck deck) throws IOException {
         dealCards(deck);
-        System.out.println("Player's hand total = " + player1.addUpHand());
-        System.out.println("Dealer's hand total = " + dealer.addUpHand());
-        playerTurn(deck);
-//        System.out.println("Player's hand total = " + player1.addUpHand());
-        String result = getResult();
-        System.out.println(result);
-        return result;
+
+        outputFirstDeal();
+
+        Boolean gameOver = playerTurn(deck);
+
+        dealerTurn(deck, gameOver);
+
+
+        outputFinalTotals();
+
+        getResult();
+
     }
 
-    public void playerTurn(Deck deck){
-        player1.takeTurn(deck);
-        if(player1.isBust() == true){
-            getResult();
+    public Boolean playerTurn(Deck deck){
+        Boolean gameOver = false;
+        System.out.println("PLAYER'S TURN:");
+        System.out.println("");
+        if (player1.hasBlackJack() == false){
+            player1.takeTurn(deck);
+            if(player1.isBust() == false) {
+                System.out.println("Player Sticks");
+            } else {
+                System.out.println("Player Bust");
+                System.out.println("");
+                dealer.sysOutCardString();
+                gameOver = true;
+            }
         } else {
-            System.out.println("Player Sticks");
+            gameOver = true;
+            System.out.println("BLACKJACK!!!");
         }
+        return gameOver;
     }
+
+    public void dealerTurn(Deck deck, Boolean gameOver){
+        if(gameOver == false){
+            System.out.println("");
+            System.out.println("DEALER'S TURN");
+            System.out.println("");
+            dealer.sysOutCardString();
+            System.out.println("");
+            if(dealer.hasBlackJack() == false){
+                dealer.takeTurn(deck);
+                if(dealer.isBust() == false){
+                    System.out.println("Dealer Sticks");
+                } else {
+                    System.out.println("Dealer Bust");
+                }
+            } else {
+                System.out.println("BLACKJACK!!!");
+            }
+        }
+
+    }
+
+    public void outputFirstDeal(){
+        System.out.println("Dealing cards...");
+        System.out.println("");
+        player1.sysOutCardString();
+        dealer.sysOutFirstHandString();
+        System.out.println("");
+    }
+
+    public void outputFinalTotals(){
+        System.out.println("");
+        int finalPlayerTotal = player1.getPlayerTotal();
+        System.out.println("Player's hand total = " + finalPlayerTotal);
+        int finalDealerTotal = dealer.getDealerTotal();
+        System.out.println("Dealer's hand total = " + finalDealerTotal);
+        System.out.println("");
+    }
+
 
 
 

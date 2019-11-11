@@ -13,6 +13,7 @@ public class DealerTest {
     private Card card3;
     private ArrayList<Card> hand;
     private Deck deck;
+    private Game game;
 
     @Before
     public void before(){
@@ -22,6 +23,7 @@ public class DealerTest {
         card3 = new Card(SuitType.DIAMONDS,RankType.ACE);
         hand = new ArrayList<Card>();
         deck = new Deck();
+        game = new Game();
     }
 
     @Test
@@ -40,10 +42,9 @@ public class DealerTest {
     @Test
     public void canAddUpHand() {
         deck.populateDeck();
-        deck.shuffleDeck();
         dealer.takeCardFromDeck(deck);
         dealer.takeCardFromDeck(deck);
-        assertEquals(12, dealer.addUpHand());
+        assertEquals(3, dealer.addUpHand());
     }
 
     @Test
@@ -157,12 +158,21 @@ public class DealerTest {
         dealer.sysOutFirstHandString();
     }
 
-//    @Test
-//    public void canUpdateAceValues() {
-//        deck.populateDeck();
-//        dealer.takeCardFromDeck(deck);
-//        dealer.takeCardFromDeck(deck);
-//        dealer.updateAceValues();
-//        assertEquals(13, dealer.addUpHand());
-//    }
+    @Test
+    public void canUpdateAceValues() {
+        deck.populateDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.updateAceValues();
+        assertEquals(13, dealer.addUpHand());
+    }
+
+    @Test
+    public void takeTurnUpdatesAceValues() {
+        deck.populateDeck();
+        dealer.takeCardFromDeck(deck);
+        dealer.takeCardFromDeck(deck);
+        dealer.takeTurn(deck);
+        assertEquals(16, dealer.addUpHand());
+    }
 }

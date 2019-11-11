@@ -26,7 +26,7 @@ public class Dealer {
     public int addUpHand(){
         int total = 0;
         for (Card card : hand){
-            total += card.getValueFromEnum();
+            total += card.getValue();
         }
         return total;
     }
@@ -65,6 +65,7 @@ public class Dealer {
             while (addUpHand() < 16){
                 System.out.println("Dealer Twists");
                 takeCardFromDeck(deck);
+                updateAceValues();
                 sysOutCardString();
                 System.out.println("");
             }
@@ -134,12 +135,14 @@ public class Dealer {
         return dealerTotal;
     }
 
-//    public void updateAceValues(){
-//        for (Card card : hand){
-//            if (card.getRank() == RankType.ACE && addUpHand() < 12){
-//                card.
-//            }
-//        }
-//    }
+    public void updateAceValues(){
+        for (Card card : hand){
+            if (card.getRank() == RankType.ACE && addUpHand() < 12){
+                card.updateValue(11);
+            } else if (card.getRank() == RankType.ACE  && addUpHand() > 11){
+                card.updateValue(1);
+            }
+        }
+    }
 
 }

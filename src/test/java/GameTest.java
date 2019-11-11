@@ -161,4 +161,11 @@ public class GameTest {
 //    public void canGetUserInput() {
 //        assertEquals("t", game.getUserInput());
 //    }
+
+
+//    @Test
+//    public void dealCardsCanUpdateAceValues() {
+//        game.dealCards(deck);
+//        assertEquals(21, game.dealer.addUpHand());
+//    }
 }

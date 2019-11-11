@@ -134,4 +134,12 @@ public class Dealer {
         return dealerTotal;
     }
 
+//    public void updateAceValues(){
+//        for (Card card : hand){
+//            if (card.getRank() == RankType.ACE && addUpHand() < 12){
+//                card.
+//            }
+//        }
+//    }
+
 }

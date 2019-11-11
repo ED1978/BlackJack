@@ -156,4 +156,13 @@ public class DealerTest {
         dealer.takeCardFromDeck(deck);
         dealer.sysOutFirstHandString();
     }
+
+//    @Test
+//    public void canUpdateAceValues() {
+//        deck.populateDeck();
+//        dealer.takeCardFromDeck(deck);
+//        dealer.takeCardFromDeck(deck);
+//        dealer.updateAceValues();
+//        assertEquals(13, dealer.addUpHand());
+//    }
 }
